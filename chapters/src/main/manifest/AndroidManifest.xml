@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.rubintry.chapters">
+
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <application>
+        <activity android:name=".activity.LoginActivity">
+        </activity>
+
+        <activity android:name=".activity.HomeActivity"></activity>
+        <activity android:name=".activity.RegisterActivity" />
+    </application>
+
+</manifest>
