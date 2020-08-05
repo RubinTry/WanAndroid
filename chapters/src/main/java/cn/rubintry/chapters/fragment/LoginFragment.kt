@@ -8,15 +8,19 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import butterknife.BindView
 import butterknife.OnClick
+import cn.gorouter.annotation.Route
 import cn.gorouter.api.launcher.GoRouter
 import cn.rubintry.chapters.R
 import cn.rubintry.chapters.R2
 import cn.rubintry.chapters.viewmodel.LoginAndRegisterViewModel
 import cn.rubintry.common.base.BaseFragment
 import cn.rubintry.common.model.CacheConstants
+import cn.rubintry.common.utils.ClassUtils
 import cn.rubintry.common.utils.ToastUtils
 import cn.rubintry.common.utils.db.SharedPreferencesUtils
 
+
+@Route(url = "chapters/LoginFragment")
 class LoginFragment : BaseFragment(){
 
     @BindView(R2.id.edtUserName)
@@ -38,7 +42,17 @@ class LoginFragment : BaseFragment(){
     }
 
     override fun initViews() {
+        val cacheLoginData = SharedPreferencesUtils.instance?.getObject(
+            CacheConstants.LOGIN_INFO
+        )
 
+        if(cacheLoginData != null){
+            val userName = ClassUtils.getPropertyValue(cacheLoginData, "username") as String
+            val password = ClassUtils.getPropertyValue(cacheLoginData, "password") as String
+
+            edtUserName.setText(userName)
+            edtPassword.setText(password)
+        }
     }
 
 
@@ -75,10 +89,10 @@ class LoginFragment : BaseFragment(){
                     if (SharedPreferencesUtils.instance?.contains(CacheConstants.LOGIN_INFO)!!) {
                         SharedPreferencesUtils.instance?.remove(CacheConstants.LOGIN_INFO)
                     }
-                    result.data.password = password
+                    result.data?.password = password
                     SharedPreferencesUtils.instance?.putObject(
                         CacheConstants.LOGIN_INFO,
-                        result.data
+                        result?.data!!
                     )
                     if(showSuccessTips){
                         ToastUtils.showShort("登录成功")

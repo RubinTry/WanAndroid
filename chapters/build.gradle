@@ -54,7 +54,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    kapt  'cn.rubintry:gorouter-compiler:1.0.3'
+
     implementation 'io.github.meetsl:SCardView:1.2'
 
     kapt 'com.jakewharton:butterknife-compiler:10.2.1'

@@ -7,11 +7,11 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import butterknife.BindView
 import butterknife.ButterKnife
 import cn.gorouter.annotation.Route
-import cn.rubintry.chapters.fragment.HomeFragment
-import cn.rubintry.chapters.fragment.LoginFragment
+import cn.gorouter.api.launcher.GoRouter
 import cn.rubintry.common.ActivityMonitor
 import cn.rubintry.common.FragmentMonitor
 import cn.rubintry.common.base.BaseActivity
@@ -67,8 +67,8 @@ class MainActivity : BaseActivity() {
             if (cacheLoginData != null) {
                 requestToLogin(cacheLoginData);
             } else {
-
-                jumpToFragment(LoginFragment(), flPageContainer)
+                val loginFragment : Fragment = GoRouter.getInstance().build("chapters/LoginFragment").fragmentInstance
+                jumpToFragment(loginFragment , flPageContainer)
                 finishFragment(SplashFragment::class.java)
             }
         }, 1000)
@@ -85,23 +85,24 @@ class MainActivity : BaseActivity() {
         val password = ClassUtils.getPropertyValue(cacheLoginData, "password") as String
 
 
-        OkHttpUtils.getInstance()
-            .post("/user/login")
-            .addParameters("username", userName)
-            .addParameters("password", password)
-            .request(object : ResponseCallback<BaseModel<LoginModel?>?>() {
-                override fun onSuccess(loginModelBaseModel: BaseModel<LoginModel?>?) {
-                    finishFragment(SplashFragment::class.java)
-                    jumpToFragment(HomeFragment(), flPageContainer);
+        OkHttpUtils.instance
+            ?.post("/user/login")
+            ?.addParameters("username", userName)
+            ?.addParameters("password", password)
+            ?.request(object : ResponseCallback<BaseModel<LoginModel?>?>() {
+                override fun onSuccess(t: BaseModel<LoginModel?>?) {
+
+                    val fragment : Fragment? = GoRouter.getInstance().build("chapters/HomeFragment").fragmentInstance
+                    jumpToFragment(fragment, flPageContainer);
+                    if(fragment != null){
+                        finishFragment(SplashFragment::class.java)
+                    }
                 }
 
-                override fun onFailed(
-                    e: Exception,
-                    loginModelBaseModel: BaseModel<LoginModel?>?
-                ) {
-                    ToastUtils.showShort("自动登录失败：" + loginModelBaseModel?.errorMsg)
-
-                    jumpToFragment(LoginFragment(), flPageContainer);
+                override fun onFailed(e: Exception?, t: BaseModel<LoginModel?>?) {
+                    ToastUtils.showShort("自动登录失败：" + e?.message)
+                    val loginFragment : Fragment = GoRouter.getInstance().build("chapters/LoginFragment").fragmentInstance
+                    jumpToFragment(loginFragment , flPageContainer);
                     finishFragment(SplashFragment::class.java)
                 }
             })

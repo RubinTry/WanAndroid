@@ -43,7 +43,7 @@ class HomeTabFragment : BaseFragment(){
     override fun onResume() {
         super.onResume()
         val subscriptionViewModel: SubscriptionViewModel by viewModels()
-        subscriptionViewModel.subscriptionData.observe(this , Observer { result ->
+        subscriptionViewModel.getSubscriptionData().observe(this , Observer { result ->
             if(result != null && result.errorCode == 0){
                 val data = result.data
                 if(homeFragmentListAdapter.isEmpty){

@@ -16,10 +16,10 @@ class ChapterApplication : MultiDexApplication() {
         super.onCreate()
         var config: BaseHttp = BaseHttp()
         config.baseUrl = "https://www.wanandroid.com"
-        config.connectTimeout = 5000L
-        config.readTimeout = 5000L
-        config.writeTimeout = 5000L
-        OkHttpUtils.getInstance().initialize(config)
+        config.setConnectTimeout(5000L)
+        config.setReadTimeout(5000L)
+        config.setWriteTimeout(5000L)
+        OkHttpUtils.instance?.initialize(config)
         GoRouter.openLog()
         GoRouter.init(this)
         Utils.init(this)

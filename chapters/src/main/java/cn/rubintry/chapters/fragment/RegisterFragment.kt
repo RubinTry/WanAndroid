@@ -9,12 +9,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import butterknife.BindView
 import butterknife.OnClick
+import cn.gorouter.annotation.Route
 import cn.rubintry.chapters.R
 import cn.rubintry.chapters.R2
 import cn.rubintry.chapters.viewmodel.LoginAndRegisterViewModel
 import cn.rubintry.common.base.BaseFragment
 import cn.rubintry.common.utils.ToastUtils
 
+
+@Route(url = "chapters/RegisterFragment")
 class RegisterFragment : BaseFragment() {
     @BindView(R2.id.tvBtnRegister)
     lateinit var tvBtnRegister : TextView

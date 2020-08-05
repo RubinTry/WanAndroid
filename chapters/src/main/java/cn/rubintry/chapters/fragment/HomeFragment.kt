@@ -4,12 +4,15 @@ import android.content.Intent
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import butterknife.BindView
+import cn.gorouter.annotation.Route
 import cn.rubintry.chapters.R
 import cn.rubintry.chapters.R2
 import cn.rubintry.chapters.adapters.HomePageAdapter
 import cn.rubintry.common.base.BaseFragment
 import com.google.android.material.tabs.TabLayout
 
+
+@Route(url = "chapters/HomeFragment")
 class HomeFragment : BaseFragment(){
 
     @BindView(R2.id.vpHome)

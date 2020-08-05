@@ -56,7 +56,10 @@ abstract class BaseActivity : AppCompatActivity() {
      */
     protected abstract fun lightMode(): Boolean
 
-    protected fun jumpToFragment(fragment: Fragment , container : View){
+    protected fun jumpToFragment(fragment: Fragment? , container : View){
+        if(fragment == null){
+            return
+        }
         FragmentMonitor.instance?.jump(fragment ,  container)
     }
 
