@@ -10,7 +10,9 @@ interface IMonitor {
      * 监听返回数据的错误信息
      * @return
      */
-    val errMsg: String?
+    val errMsg: String
+
+
 
     /**
      * 监听返回数据的数据结构并处理
@@ -18,9 +20,11 @@ interface IMonitor {
      */
     val code: Int
 
+
     /**
      * 服务端请求通过的判断条件，注： 不仅要可以正常访问服务器，而且服务端会正常返回数据时会触发该方法
      * @return
      */
     fun success(): Boolean
+
 }

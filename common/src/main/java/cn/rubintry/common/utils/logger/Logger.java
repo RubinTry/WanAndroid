@@ -41,4 +41,14 @@ public class Logger implements ILogger {
     public void warn(String message, Throwable ex) {
         Log.w(TAG, message , ex);
     }
+
+    @Override
+    public void verbose(String message) {
+        Log.v(TAG , message);
+    }
+
+    @Override
+    public void verbose(String message, Throwable ex) {
+        Log.v(TAG , message , ex);
+    }
 }

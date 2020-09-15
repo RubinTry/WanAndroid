@@ -25,7 +25,7 @@ class HomeTabFragment : BaseFragment(){
         return R.layout.fragment_tab_home
     }
 
-    override fun initViews() {
+    override fun processor() {
         rvHome.layoutManager = LinearLayoutManager(getDefaultContext())
         rvHome.isNestedScrollingEnabled = false
         homeFragmentListAdapter = HomeFragmentListAdapter(ArrayList<SubscriptionModel>(), R.layout.item_home)

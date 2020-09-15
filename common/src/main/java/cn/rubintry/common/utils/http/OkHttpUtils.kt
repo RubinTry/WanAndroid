@@ -1,5 +1,9 @@
 package cn.rubintry.common.utils.http
 
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
 import android.util.Log
 import cn.rubintry.common.utils.GsonUtils
 import cn.rubintry.common.utils.logger.OkLogger
@@ -17,6 +21,8 @@ import java.util.concurrent.TimeUnit
  * @author logcat
  */
 class OkHttpUtils private constructor() {
+    private val SUCCESS: Int = 2020091401
+    private val FAIL: Int = 2020091402
     private val httpTask: HttpTask = HttpTask()
     private var config: BaseHttp? = null
     private var defaultClient: OkHttpClient? = null
@@ -178,7 +184,15 @@ class OkHttpUtils private constructor() {
     }
 
 
-
+    /**
+     * 异步发起请求
+     *
+     * @param T
+     * @param request
+     * @param config
+     * @param responseCallback
+     * @param modelType
+     */
     private fun <T> enqueue(
         request: Request,
         config: BaseHttp?,
@@ -189,9 +203,9 @@ class OkHttpUtils private constructor() {
         call.enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 if(e is SocketTimeoutException){
-                    responseCallback?.onFailed(java.lang.Exception("请求超时"), null)
+                    Handler(Looper.getMainLooper()).post(Runnable { responseCallback?.onFailed(java.lang.Exception("请求超时"), null) })
                 }else{
-                    responseCallback?.onFailed(e, null)
+                    Handler(Looper.getMainLooper()).post(Runnable { responseCallback?.onFailed(e, null) })
                 }
 
             }
@@ -207,14 +221,14 @@ class OkHttpUtils private constructor() {
                 if (IMonitor::class.java.isAssignableFrom(bodyObj.javaClass)) {
                     val iMonitor = bodyObj as IMonitor
                     if (iMonitor.success()) {
-                        responseCallback?.onSuccess(bodyObj as T)
+                        Handler(Looper.getMainLooper()).post(Runnable { responseCallback?.onSuccess(bodyObj as T) })
                     } else {
-                        responseCallback?.onFailed(
+                        Handler(Looper.getMainLooper()).post(Runnable { responseCallback?.onFailed(
                             ServerException(
                                 iMonitor?.errMsg!!,
                                 iMonitor.code
                             ), iMonitor as T
-                        )
+                        ) })
                     }
                 } else {
                     response.body!!.close()
@@ -252,12 +266,12 @@ class OkHttpUtils private constructor() {
             if (IMonitor::class.java.isAssignableFrom(obj.javaClass)) {
                 val iMonitor = obj as IMonitor
                 if (iMonitor.success()) {
-                    callback?.onSuccess(obj as T)
+                    Handler(Looper.getMainLooper()).post(Runnable { callback?.onSuccess(obj as T) })
                 } else {
-                    callback?.onFailed(
-                        ConvertException("Convert failed , target type is" + modelType!!.typeName + " but jsonStr is " + responseJsonStr),
-                        iMonitor as T
-                    )
+                    Handler(Looper.getMainLooper()).post(Runnable { callback?.onFailed(ServerException(
+                        iMonitor?.errMsg!!,
+                        iMonitor.code
+                    ), iMonitor as T) })
                 }
             } else {
                 response.body!!.close()
@@ -269,10 +283,10 @@ class OkHttpUtils private constructor() {
             if (callback != null) {
                 if (IMonitor::class.java.isAssignableFrom(obj.javaClass)) {
                     val iMonitor = obj as IMonitor
-                    callback.onFailed(
+                    Handler(Looper.getMainLooper()).post(Runnable { callback.onFailed(
                         ConvertException("Convert failed , target type is" + modelType!!.typeName + " but jsonStr is " + responseJsonStr),
                         iMonitor as T
-                    )
+                    ) })
                 }
             }
         }
@@ -371,5 +385,6 @@ class OkHttpUtils private constructor() {
             }
             private set
     }
+
 
 }

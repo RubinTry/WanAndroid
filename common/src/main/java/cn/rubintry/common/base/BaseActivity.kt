@@ -8,9 +8,6 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import cn.rubintry.common.ActivityMonitor
-import cn.rubintry.common.FragmentMonitor
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -19,7 +16,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ActivityMonitor.instance?.add(this)
         if(attachedLayoutRes() != null){
             val resId = attachedLayoutRes()
             setContentView(resId!!)
@@ -56,20 +52,9 @@ abstract class BaseActivity : AppCompatActivity() {
      */
     protected abstract fun lightMode(): Boolean
 
-    protected fun jumpToFragment(fragment: Fragment? , container : View){
-        if(fragment == null){
-            return
-        }
-        FragmentMonitor.instance?.jump(fragment ,  container)
-    }
 
 
-    protected fun finishFragment(aClass: Class<out Fragment?>?){
-        if(FragmentMonitor.instance?.contains(aClass)!!){
-            FragmentMonitor.instance?.finish(aClass)
-        }
 
-    }
 
     private fun transparentStatusBar(window: Window) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return
@@ -100,10 +85,6 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    override fun finish() {
-        ActivityMonitor.instance?.remove(this)
-        super.finish()
-    }
 
     override fun onDestroy() {
         super.onDestroy()

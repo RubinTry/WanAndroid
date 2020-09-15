@@ -1,11 +1,12 @@
 package cn.rubintry.common.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author logcat
  */
-public class LoginModel {
+public class LoginModel implements Serializable {
 
     /**
      * admin : false
@@ -140,4 +141,6 @@ public class LoginModel {
     public void setCollectIds(List<?> collectIds) {
         this.collectIds = collectIds;
     }
+
+    
 }

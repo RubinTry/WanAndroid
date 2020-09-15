@@ -16,4 +16,8 @@ public interface ILogger {
     void warn(String message);
 
     void warn(String message , Throwable ex);
+
+    void verbose(String message);
+
+    void verbose(String message , Throwable ex);
 }

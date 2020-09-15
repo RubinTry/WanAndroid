@@ -24,6 +24,6 @@ class ChapterApplication : MultiDexApplication() {
         GoRouter.init(this)
         Utils.init(this)
 
-        SharedPreferencesUtils.instance!!.initialize(this , "WanAndroidDataSharedPreferences" , Context.MODE_PRIVATE)
+//        SharedPreferencesUtils.instance!!.initialize(this , "WanAndroidDataSharedPreferences" , Context.MODE_PRIVATE)
     }
 }

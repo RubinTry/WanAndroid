@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import butterknife.BindView
 import butterknife.OnClick
 import cn.gorouter.annotation.Route
+import cn.gorouter.api.monitor.FragmentMonitor
 import cn.rubintry.chapters.R
 import cn.rubintry.chapters.R2
 import cn.rubintry.chapters.viewmodel.LoginAndRegisterViewModel
@@ -33,7 +34,7 @@ class RegisterFragment : BaseFragment() {
         return R.layout.fragment_register
     }
 
-    override fun initViews() {
+    override fun processor() {
 
     }
 
@@ -68,7 +69,8 @@ class RegisterFragment : BaseFragment() {
                     .observe(this , Observer { result ->
                         if(result != null && result.errorCode == 0){
                             ToastUtils.showShort("注册成功")
-                            finish()
+//                            finish()
+                            FragmentMonitor.instance?.finish()
                         }else{
                             ToastUtils.showShort("注册失败 : " + result.errorMsg)
                         }

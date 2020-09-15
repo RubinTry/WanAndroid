@@ -1,6 +1,7 @@
 package cn.rubintry.chapters.fragment
 
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -10,14 +11,17 @@ import butterknife.BindView
 import butterknife.OnClick
 import cn.gorouter.annotation.Route
 import cn.gorouter.api.launcher.GoRouter
+import cn.gorouter.api.monitor.FragmentMonitor
 import cn.rubintry.chapters.R
 import cn.rubintry.chapters.R2
 import cn.rubintry.chapters.viewmodel.LoginAndRegisterViewModel
+import cn.rubintry.common.Const
 import cn.rubintry.common.base.BaseFragment
 import cn.rubintry.common.model.CacheConstants
 import cn.rubintry.common.utils.ClassUtils
 import cn.rubintry.common.utils.ToastUtils
 import cn.rubintry.common.utils.db.SharedPreferencesUtils
+import java.lang.Exception
 
 
 @Route(url = "chapters/LoginFragment")
@@ -35,25 +39,31 @@ class LoginFragment : BaseFragment(){
     @BindView(R2.id.tvGotoRegister)
     lateinit var tvGotoRegister: TextView
 
-    val loginAndRegisterViewModel: LoginAndRegisterViewModel by viewModels()
+    private var containerId : Int ?= null
+
+    private val loginAndRegisterViewModel: LoginAndRegisterViewModel by viewModels()
 
     override fun attachedLayoutRes(): Int {
         return R.layout.fragment_login
     }
 
-    override fun initViews() {
+    override fun processor(){
         val cacheLoginData = SharedPreferencesUtils.instance?.getObject(
             CacheConstants.LOGIN_INFO
         )
 
-        if(cacheLoginData != null){
-            val userName = ClassUtils.getPropertyValue(cacheLoginData, "username") as String
-            val password = ClassUtils.getPropertyValue(cacheLoginData, "password") as String
+        containerId = arguments?.getInt(Const.CONTAINER_ID);
 
-            edtUserName.setText(userName)
-            edtPassword.setText(password)
+        if(cacheLoginData != null){
+            try {
+                val userName = ClassUtils.getPropertyValue(cacheLoginData, "username") as String
+                edtUserName.setText(userName)
+            }catch (ex : Exception){
+                ex.printStackTrace()
+            }
         }
     }
+
 
 
     @OnClick(value = [R2.id.tvBtnLogin, R2.id.tvGotoRegister])
@@ -76,8 +86,7 @@ class LoginFragment : BaseFragment(){
             }
 
             R.id.tvGotoRegister -> {
-//                GoRouter.getInstance().build("chapters/RegisterActivity").go()
-                jumpToFragment(RegisterFragment())
+                GoRouter.getInstance().build("chapters/RegisterFragment").setFragmentContainer(containerId!!).go()
             }
         }
     }
@@ -86,6 +95,7 @@ class LoginFragment : BaseFragment(){
         loginAndRegisterViewModel.login(userName, password)
             .observe(this, Observer { result ->
                 if (result != null && result.errorCode == 0) {
+
                     if (SharedPreferencesUtils.instance?.contains(CacheConstants.LOGIN_INFO)!!) {
                         SharedPreferencesUtils.instance?.remove(CacheConstants.LOGIN_INFO)
                     }
@@ -97,8 +107,12 @@ class LoginFragment : BaseFragment(){
                     if(showSuccessTips){
                         ToastUtils.showShort("登录成功")
                     }
-                    jumpToFragment(HomeFragment())
-                    finish()
+
+                    FragmentMonitor.instance?.finish()
+
+                    GoRouter.getInstance()
+                        .build("chapters/HomeFragment")
+                        .setFragmentContainer(containerId!!).go()
 
                 } else {
                     ToastUtils.showShort("登录失败" + result.errorMsg)
@@ -106,4 +120,6 @@ class LoginFragment : BaseFragment(){
                 }
             })
     }
+
+
 }

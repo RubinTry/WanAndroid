@@ -1,6 +1,7 @@
 package cn.rubintry.chapters.fragment
 
 import android.content.Intent
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import butterknife.BindView
@@ -28,7 +29,7 @@ class HomeFragment : BaseFragment(){
         return R.layout.fragment_home
     }
 
-    override fun initViews() {
+    override fun processor() {
         pageList = ArrayList()
         pageList?.add(HomeTabFragment())
         pageList?.add(HomeTabFragment())
@@ -71,7 +72,9 @@ class HomeFragment : BaseFragment(){
     }
 
 
-
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d("home", "onDestroyView: ")
+    }
 
 }

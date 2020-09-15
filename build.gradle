@@ -16,12 +16,30 @@ buildscript {
 
 allprojects {
     repositories {
-
+        flatDir {
+            dirs project(':common').file('libs')
+        }
         maven{
             url 'https://jitpack.io'
         }
         google()
         jcenter()
+
+//阿里云镜像库
+        maven {
+            url 'https://maven.aliyun.com/repository/google'
+        }
+
+        maven {
+            url 'https://maven.aliyun.com/repository/jcenter'
+        }
+
+        maven { url "https://maven.aliyun.com/repository/releases/" }
+
+
+        maven { url "https://maven.aliyun.com/repository/public/" }
+        
+
 
     }
 }

@@ -20,7 +20,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
@@ -40,8 +39,10 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp-tls:4.8.0")
 
     implementation "androidx.core:core-ktx:1.3.0"
-    //自制路由框架
-    api 'cn.rubintry:gorouter-api:1.0.6'
+    //自制路由框架 文档地址 https://github.com/RubinTry/GoRouter
+    api 'cn.rubintry:gorouter-api:1.0.25'
+//    api(name: 'gorouter-api-release', ext: 'aar')
+//    api(name: 'gorouter-api-debug', ext: 'aar')
     api 'cn.rubintry:gorouter-annotation:1.0.3'
 
     def multidex_version = "2.0.1"

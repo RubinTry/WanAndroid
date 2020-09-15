@@ -15,7 +15,6 @@ import cn.rubintry.common.utils.http.OkHttpUtils
 class WanAndroidApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
-        SharedPreferencesUtils.instance!!.initialize(this , "WanAndroidDataSharedPreferences" , Context.MODE_PRIVATE)
 
         val config = BaseHttp()
         config.baseUrl = "https://www.wanandroid.com"

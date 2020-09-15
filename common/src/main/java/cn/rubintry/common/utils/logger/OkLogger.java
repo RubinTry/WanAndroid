@@ -31,4 +31,14 @@ public class OkLogger {
     public static void warn(String message , Throwable ex){
         logger.warn(message , ex);
     }
+
+
+    public static void verbose(String message){
+        logger.verbose(message);
+    }
+
+    public static void verbose(String message , Throwable ex){
+        logger.verbose(message , ex);
+    }
+
 }

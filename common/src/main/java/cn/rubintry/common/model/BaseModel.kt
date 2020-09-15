@@ -6,22 +6,21 @@ import cn.rubintry.common.utils.http.IMonitor
  * @author logcat
  */
 class BaseModel<T> : IMonitor {
+    override val errMsg: String
+        get() = errorMsg
+    override val code: Int
+        get() = errorCode
+
     var data: T? = null
         get() = field
         private set
-    override var errMsg: String? = null
+
+
+    var errorMsg: String = ""
         get() = field
         set
 
-    override var code = 0
-        get() = field
-        set
-
-    var errorMsg : String = ""
-        get() = field
-        set
-
-    var errorCode : Int ?= null
+    var errorCode: Int = 0
         get() = field
         set
 
@@ -29,6 +28,7 @@ class BaseModel<T> : IMonitor {
     fun setData(data: T) {
         this.data = data
     }
+
 
     override fun success(): Boolean {
         return code == 0

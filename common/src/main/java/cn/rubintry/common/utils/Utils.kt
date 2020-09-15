@@ -6,13 +6,18 @@ import android.content.Context
 /**
  * @author logcat
  */
-object Utils {
-    var applicationContext: Context? = null
-        private set
+class Utils {
+    companion object{
+        var applicationContext: Context? = null
+            private set
+            get
 
-    fun init(application: Application) {
-        applicationContext = application.applicationContext
+        fun init(application: Application) {
+            applicationContext = application.applicationContext
+        }
     }
+
+
 
 
 

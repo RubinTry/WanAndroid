@@ -21,4 +21,5 @@
 #-renamesourcefileattribute SourceFile
 
 -keep public class cn.gorouter.api.launcher.**{*;}
+-keep public class cn.gorouter.api.monitor.**{*;}
 -keep public class cn.gorouter.route.**{*;}

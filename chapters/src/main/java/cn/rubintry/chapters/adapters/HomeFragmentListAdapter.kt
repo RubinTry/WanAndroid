@@ -31,4 +31,5 @@ class HomeFragmentListAdapter(data: List<SubscriptionModel>, resId: Int) :
     }
 
 
+
 }
