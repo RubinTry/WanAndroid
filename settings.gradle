@@ -1,0 +1,6 @@
+include ':lib-res'
+include ':module-login'
+include ':lib-common'
+include ':lib-network'
+include ':app'
+rootProject.name = "WanAndroid"
