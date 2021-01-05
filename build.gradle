@@ -1,16 +1,26 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+<<<<<<< HEAD
     ext.kotlin_version = "1.4.21"
     ext.lifecycle_version = "2.2.0"
+=======
+    ext.kotlin_version = "1.3.72"
+>>>>>>> b86d385c9aeacc8d38ae771c802539495ef6cdab
     repositories {
         google()
         jcenter()
     }
     dependencies {
+<<<<<<< HEAD
         classpath "com.android.tools.build:gradle:4.1.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-noarg:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
+=======
+        classpath "com.android.tools.build:gradle:4.0.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.1'
+>>>>>>> b86d385c9aeacc8d38ae771c802539495ef6cdab
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -18,13 +28,42 @@ buildscript {
 
 allprojects {
     repositories {
+<<<<<<< HEAD
         google()
         jcenter()
+=======
+        flatDir {
+            dirs project(':common').file('libs')
+        }
+        maven{
+            url 'https://jitpack.io'
+        }
+        google()
+        jcenter()
+
+//阿里云镜像库
+        maven {
+            url 'https://maven.aliyun.com/repository/google'
+        }
+
+        maven {
+            url 'https://maven.aliyun.com/repository/jcenter'
+        }
+
+        maven { url "https://maven.aliyun.com/repository/releases/" }
+
+
+        maven { url "https://maven.aliyun.com/repository/public/" }
+        
+
+
+>>>>>>> b86d385c9aeacc8d38ae771c802539495ef6cdab
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+<<<<<<< HEAD
 }
 
 
@@ -36,4 +75,6 @@ ext{
     buildToolsVersion = "30.0.2"
     minSdkVersion = 19
     targetSdkVersion = 30
+=======
+>>>>>>> b86d385c9aeacc8d38ae771c802539495ef6cdab
 }

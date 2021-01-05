@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 include ':lib-res'
 include ':module-login'
 include ':lib-common'
 include ':lib-network'
+=======
+include ':chapters'
+include ':common'
+>>>>>>> b86d385c9aeacc8d38ae771c802539495ef6cdab
 include ':app'
 rootProject.name = "WanAndroid"

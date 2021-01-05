@@ -18,4 +18,12 @@
 
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
+<<<<<<< HEAD
 #-renamesourcefileattribute SourceFile
+=======
+#-renamesourcefileattribute SourceFile
+
+-keep public class cn.gorouter.api.launcher.**{*;}
+-keep public class cn.gorouter.api.monitor.**{*;}
+-keep public class cn.gorouter.route.**{*;}
+>>>>>>> b86d385c9aeacc8d38ae771c802539495ef6cdab

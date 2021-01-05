@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
+=======
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+>>>>>>> b86d385c9aeacc8d38ae771c802539495ef6cdab
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="testRunner" value="PLATFORM" />
+<<<<<<< HEAD
         <option name="disableWrapperSourceDistributionNotification" value="true" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="$PROJECT_DIR$/../../gradle-6.6.1" />
         <option name="gradleJvm" value="1.8" />
+=======
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="D:/gradle-6.4.1" />
+        <option name="gradleJvm" value="1.8 (2)" />
+>>>>>>> b86d385c9aeacc8d38ae771c802539495ef6cdab
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+<<<<<<< HEAD
             <option value="$PROJECT_DIR$/lib-common" />
             <option value="$PROJECT_DIR$/lib-network" />
             <option value="$PROJECT_DIR$/lib-res" />
@@ -21,6 +33,13 @@
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
         <option name="useQualifiedModuleNames" value="true" />
+=======
+            <option value="$PROJECT_DIR$/chapters" />
+            <option value="$PROJECT_DIR$/common" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+>>>>>>> b86d385c9aeacc8d38ae771c802539495ef6cdab
       </GradleProjectSettings>
     </option>
   </component>
