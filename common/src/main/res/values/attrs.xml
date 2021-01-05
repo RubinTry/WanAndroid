@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <declare-styleable name="ChangeableCardView">
-        <attr name="shadowRadius" format="dimension"></attr>
-        <attr name="offsetX" format="dimension"></attr>
-        <attr name="offsetY" format="dimension"></attr>
-        <attr name="shadowRootColor" format="color"></attr>
-    </declare-styleable>
-</resources>
