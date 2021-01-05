@@ -1,7 +1,3 @@
 <resources>
-<<<<<<< HEAD
     <string name="app_name">WanAndroid</string>
-=======
-    <string name="app_name">玩转Android</string>
->>>>>>> b86d385c9aeacc8d38ae771c802539495ef6cdab
 </resources>

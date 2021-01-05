@@ -12,11 +12,8 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(setLayout())
-    }
 
-    override fun onStart() {
-        super.onStart()
-        viewModelList = getViewModels()
+        getViewModels()?.let { viewModelList.addAll(it) }
         for (baseViewModel in viewModelList) {
             baseViewModel.lifecycleOwner = this
         }
@@ -24,9 +21,10 @@ abstract class BaseActivity : AppCompatActivity() {
         requestData()
     }
 
+
     protected abstract fun setLayout(): View?
 
-    protected abstract fun getViewModels(): MutableList<BaseViewModel>
+    protected abstract fun getViewModels(): MutableList<BaseViewModel>?
 
     protected abstract fun initView()
 

@@ -39,4 +39,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     implementation project(path: ':lib-res')
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    api 'cn.rubintry:gorouter-annotation:1.0.3'
+    api 'cn.rubintry:gorouter-api:1.0.33'
+    //AndroidUtilCode
+    api 'com.blankj:utilcodex:1.30.5'
 }
