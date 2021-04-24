@@ -4,6 +4,7 @@ if(runAsApplication.toBoolean().booleanValue()){
     apply plugin: 'com.android.library'
 }
 apply from: '../config.gradle'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion

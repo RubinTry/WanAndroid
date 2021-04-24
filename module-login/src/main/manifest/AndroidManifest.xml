@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.rubintry.module_login">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application>
-        <activity android:name=".LoginActivity">
-        </activity>
+        <activity android:name=".activity.GuideActivity"></activity>
+        <activity android:name=".activity.LoginActivity"></activity>
     </application>
 
 </manifest>

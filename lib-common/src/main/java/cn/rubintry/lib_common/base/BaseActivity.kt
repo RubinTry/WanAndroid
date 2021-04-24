@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
+import com.blankj.utilcode.util.BarUtils
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -12,6 +13,11 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(setLayout())
+        if(transparentStatusBar()){
+            BarUtils.transparentStatusBar(this)
+        }
+
+        BarUtils.setStatusBarLightMode(this , true)
 
         getViewModels()?.let { viewModelList.addAll(it) }
         for (baseViewModel in viewModelList) {
@@ -23,6 +29,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
 
     protected abstract fun setLayout(): View?
+
+    protected abstract fun transparentStatusBar(): Boolean
 
     protected abstract fun getViewModels(): MutableList<BaseViewModel>?
 

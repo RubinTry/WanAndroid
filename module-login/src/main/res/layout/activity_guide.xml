@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.GuideActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:src="@mipmap/guide" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvGuide1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="你走过的路"
+            android:textSize="28sp"
+            android:textColor="#333333"
+            android:textStyle="bold"
+            android:layout_marginEnd="22dp"
+            android:layout_gravity="end"
+            android:visibility="gone"/>
+
+
+
+        <TextView
+            android:id="@+id/tvGuide2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="每一步都算数"
+            android:textSize="28sp"
+            android:textColor="#333333"
+            android:textStyle="bold"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tvSkip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="跳过 3s"
+            android:textSize="18sp"
+            android:textColor="#888888"
+            android:layout_gravity="end"
+            android:layout_marginBottom="50dp"
+            android:layout_marginEnd="22dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="5dp"
+            android:background="@drawable/bg_btn_skip"
+            />
+    </LinearLayout>
+</FrameLayout>

@@ -6,6 +6,7 @@ import cn.gorouter.api.launcher.GoRouter
 import cn.rubintry.lib_network.http.CallAdapterType
 import cn.rubintry.lib_network.http.NetApiManager
 import com.blankj.utilcode.util.AppUtils
+import com.tencent.bugly.crashreport.CrashReport
 
 class BaseModuleInit : IModuleInit {
     private val TAG = this.javaClass.simpleName
@@ -20,6 +21,7 @@ class BaseModuleInit : IModuleInit {
         GoRouter.setDebugable(true)
         GoRouter.init(application)
 
+        CrashReport.initCrashReport(application.applicationContext , "b57412d327", false);
 
     }
 
