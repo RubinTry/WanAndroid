@@ -12,9 +12,9 @@ import retrofit2.Callback
 
 class LoginViewModel() : BaseViewModel() {
 
-
     private var username: String = ""
-    private var password: String = ""
+    private var password: String= ""
+
     val login: MutableLiveData<LoginModel> by lazy {
         MutableLiveData<LoginModel>().also {
             doLogin()
@@ -30,9 +30,10 @@ class LoginViewModel() : BaseViewModel() {
 
     }
 
-    override fun setParams(vararg params: String) {
+    override fun setParams(vararg params: String): LoginViewModel {
         username = params[0]
         password = params[1]
+        return this
     }
 
 

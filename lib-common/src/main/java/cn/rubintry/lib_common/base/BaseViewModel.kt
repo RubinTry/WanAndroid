@@ -11,5 +11,5 @@ abstract class BaseViewModel() : ViewModel() {
      *
      * @param params
      */
-    abstract fun setParams(vararg params: String)
+    abstract fun setParams(vararg params: String): BaseViewModel
 }
